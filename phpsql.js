@@ -7,7 +7,7 @@ function onClick(e){
 
   var context = canvas.getContext('2d');
   context.fillText("a",x,y);
-  fetch("http://m183.s25.xrea.com/test.php",{
+  fetch("test.php",{
     method : 'POST',
     headers : {
       'Context-Type' : 'application/json'
