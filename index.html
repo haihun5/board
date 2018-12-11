@@ -2,37 +2,6 @@
 <html>
 <head>
 <title>canvas tutorial</title>
-<?php
-if($_SERVER['SERVER_NAME'] == "localhost") {
-    $mysqli = new mysqli('localhost', 'root', '', 'keijiban');
-} else {
-    $mysqli = new mysqli('localhost', 'm183', 'xZ8d', 'm183');
-}
-if ($mysqli->connect_error){
-  print("connect failed : " . $mysqli->connect_error);
-  exit();
-}
-
-$stmt = $mysqli->prepare("INSERT INTO datas (name, message) VALUES (?, ?)");
-$stmt->bind_param('ss', $_POST["name"], $_POST["message"]);
-$stmt->execute();
-
-$result = $mysqli->query("SELECT * FROM datas ORDER BY created DESC");
-$datas = []
-if($result){
-  while($row = $result->fetch_object()){
-    $name = htmlspecialchars($row->name);
-    $message = htmlspecialchars($row->message);
-    $message = nl2br($message);
-    $created = htmlspecialchars($row->created);
-    $datas[] = $name
-  }
-}
-$mysqli->close();
-?>
-<script type="text/javascript">
-var datas = JSON.parse('<?php json_decode($datas) ?>');
-</script>
 <style type="text/css">
 #canvas{
 background: #666;
@@ -40,6 +9,37 @@ background: #666;
 </style>
 </head>
 <body>
+  <?php
+  if($_SERVER['SERVER_NAME'] == "localhost") {
+      $mysqli = new mysqli('localhost', 'root', '', 'keijiban');
+  } else {
+      $mysqli = new mysqli('localhost', 'm183', 'xZ8d', 'm183');
+  }
+  if ($mysqli->connect_error){
+    print("connect failed : " . $mysqli->connect_error);
+    exit();
+  }
+
+  $stmt = $mysqli->prepare("INSERT INTO datas (name, message) VALUES (?, ?)");
+  $stmt->bind_param('ss', $_POST["name"], $_POST["message"]);
+  $stmt->execute();
+
+  $result = $mysqli->query("SELECT * FROM datas ORDER BY created DESC");
+  $datas = []
+  if($result){
+    while($row = $result->fetch_object()){
+      $name = htmlspecialchars($row->name);
+      $message = htmlspecialchars($row->message);
+      $message = nl2br($message);
+      $created = htmlspecialchars($row->created);
+      $datas[] = $name
+    }
+  }
+  $mysqli->close();
+  ?>
+  <script type="text/javascript">
+  var datas = JSON.parse('<?php json_decode($datas) ?>');
+  </script>
 <canvas id="canvas" width="1280" height="960"></canvas>
 <script type="text/javascript" src="phpsql.js"></script>
 </body>
