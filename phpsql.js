@@ -6,6 +6,7 @@ function onClick(e){
   y = e.clientY - rect.top;
 
   var context = canvas.getContext('2d');
+	context.fillText(datas[mode],x,y+10);
   fetch("test.php",{
     method : 'POST',
     body : JSON.stringify({
