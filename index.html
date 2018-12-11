@@ -30,7 +30,7 @@ if($result){
 $mysqli->close();
 ?>
 <script type="text/javascript">
-var datas = JSON.parse('<?php json_decode($datas) ?>');
+var datas = JSON.parse('<?php echo json_encode($datas); ?>');
 </script>
 <style type="text/css">
 #canvas{
