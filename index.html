@@ -18,7 +18,6 @@ $stmt->bind_param('ss', $_POST["name"], $_POST["message"]);
 $stmt->execute();
 
 $result = $mysqli->query("SELECT * FROM datas ORDER BY created DESC");
-$datas = [];
 if($result){
   while($row = $result->fetch_object()){
     $name = htmlspecialchars($row->name);
