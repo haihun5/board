@@ -16,7 +16,7 @@ var mouse = {
 function leave(e) {
   mouse.isDrawing = false;
 
-  var imageData = ctx.toDataURL("image/png");
+  var imageData = canvas.toDataURL("image/png");
   fetch("test.php", {
     method: 'POST',
     body: JSON.stringify({
