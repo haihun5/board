@@ -1,7 +1,7 @@
 function leave(e){
   mouse.isDrawing = false;
 
-  var imageData = context.toDataURL("image/png");
+  var imageData = ctx.toDataURL("image/png");
   fetch("test.php", {
     method: 'POST',
     body: JSON.stringify({
@@ -10,9 +10,7 @@ function leave(e){
       'data': imageData
     })
   }).then(response => {
-    return response.json();
-  }).then(jsonData => {
-    context.fillText(jsonData, x, y);
+    ctx.fillText('a',0,0);
   });
 }
 
