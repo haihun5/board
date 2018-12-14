@@ -69,9 +69,7 @@ window.onload = function() {
     mouse.isDrawing = false;
   });
 
-  canvas.addEventListener('mouseleave', function(e) {
-    mouse.isDrawing = false;
-  });
+  canvas.addEventListener('mouseleave', leave);
 }
 
 function onClick(e) {
