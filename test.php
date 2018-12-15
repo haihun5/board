@@ -7,7 +7,7 @@ $base_to_php = explode(',', $json->data);
 // the 2nd item in the base_to_php array contains the content of the image
 $data = base64_decode($base_to_php[1]);
 // here you can detect if type is png or jpg if you want
-$filepath = "/canvas/{$json->id}.png"; // or image.jpg
+$filepath = "pads/{$json->id}.png"; // or image.jpg
 
 // Save the image in a defined path
 file_put_contents($filepath,$data);

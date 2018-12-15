@@ -15,7 +15,7 @@ var mouse = {
 
 function load_pad(){
   img = new Image();
-  img.src = `pad/${datas['id']}.png`;
+  img.src = `pads/${datas['id']}.png`;
   img.onload = function(){
     ctx.drawImage(img,0,0);
   }
