@@ -3,6 +3,12 @@
 <head>
 <title>canvas tutorial</title>
 <?php
+$id = 0;
+if(isset($_GET['id'])){
+  $id = $_GET['id'];
+}
+$datas['id'] = $id;
+
 if($_SERVER['SERVER_NAME'] == "localhost") {
     $mysqli = new mysqli('localhost', 'root', '', 'keijiban');
 } else {
@@ -24,7 +30,6 @@ if($result){
     $message = htmlspecialchars($row->message);
     $message = nl2br($message);
     $created = htmlspecialchars($row->created);
-    $datas[] = $name;
   }
 }
 $mysqli->close();

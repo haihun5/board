@@ -13,6 +13,14 @@ var mouse = {
   isDrawing: false
 };
 
+function load_pad(){
+  img = new Image();
+  img.src = `pad/${datas['id']}.png`;
+  img.onload = function(){
+    ctx.drawImage(img,0,0);
+  }
+}
+
 function leave(e) {
   mouse.isDrawing = false;
 
@@ -31,6 +39,7 @@ function leave(e) {
 
 window.onload = function() {
   var borderWidth = 1;
+  load_pad();
 
   canvas.addEventListener("mousemove", function(e) {
     //2.マウスが動いたら座標値を取得
