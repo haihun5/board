@@ -13,17 +13,15 @@ var mouse = {
   isDrawing: false
 };
 
-function load_pad(){
+function load_pad() {
   img = new Image();
   img.src = `pads/${datas['id']}.png`;
-  img.onload = function(){
-    ctx.drawImage(img,0,0);
+  img.onload = function() {
+    ctx.drawImage(img, 0, 0);
   }
 }
 
-function leave(e) {
-  mouse.isDrawing = false;
-
+function save_pad() {
   var imageData = canvas.toDataURL("image/png");
   fetch("test.php", {
     method: 'POST',
@@ -32,9 +30,12 @@ function leave(e) {
       'op': 0,
       'data': imageData
     })
-  }).then(response => {
-    ctx.fillText('a', 0, 0);
   });
+}
+
+function leave(e) {
+  mouse.isDrawing = false;
+  save_pad();
 }
 
 window.onload = function() {
@@ -77,6 +78,13 @@ window.onload = function() {
   });
 
   canvas.addEventListener('mouseleave', leave);
+
+  canvas.addEventListener('keydown', function(e) {
+    if (e.keyCode == 67) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      save_pad();
+    }
+  });
 }
 
 function onClick(e) {
